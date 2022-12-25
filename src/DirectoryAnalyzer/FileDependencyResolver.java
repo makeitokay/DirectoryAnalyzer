@@ -34,7 +34,7 @@ public class FileDependencyResolver {
         return null;
     }
 
-    public List<String> topologicalSort() {
+    public List<Path> topologicalSort() {
         var result = new Stack<String>();
         var visited = new HashMap<String, VisitState>();
         var files = adjacencyMap.keySet();
@@ -47,7 +47,7 @@ public class FileDependencyResolver {
                 topologicalSort(file, visited, result);
             }
         }
-        return result;
+        return result.stream().map(Path::of).toList();
     }
 
     private void topologicalSort(String file, HashMap<String, VisitState> visited, Stack<String> result) {

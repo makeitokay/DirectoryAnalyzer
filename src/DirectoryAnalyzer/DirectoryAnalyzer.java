@@ -34,6 +34,8 @@ public class DirectoryAnalyzer {
             cyclicDependencyLog.forEach(System.out::println);
             return;
         }
-        dependencyResolver.topologicalSort().forEach(System.out::println);
+        for (var file : dependencyResolver.topologicalSort()) {
+            fileParser.printFile(file);
+        }
     }
 }
