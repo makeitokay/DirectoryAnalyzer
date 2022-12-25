@@ -1,5 +1,7 @@
 package DirectoryAnalyzer;
 
+import DirectoryAnalyzer.exception.DependentFileNotFoundException;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -19,6 +21,9 @@ public class Main {
             try {
                 var analyzer = new DirectoryAnalyzer(directory);
                 analyzer.analyze();
+            }
+            catch (DependentFileNotFoundException e) {
+                System.out.println("Зависимость " + e.getDependentFile() + " для файла " + e.getParentFile() + " не найдена.");
             }
             catch (FileNotFoundException e) {
                 System.out.println("Указанная директория не найдена");
