@@ -33,11 +33,11 @@ public class FileParser {
                 if (dependencyPath.isEmpty()) {
                     continue;
                 }
-                var dependence = file.getParent().resolve(dependencyPath);
-                if (!Files.exists(dependence)) {
-                    throw new DependentFileNotFoundException(file, dependence);
+                var dependency = file.getParent().resolve(dependencyPath);
+                if (!Files.exists(dependency)) {
+                    throw new DependentFileNotFoundException(file, dependency);
                 }
-                dependencies.add(dependence);
+                dependencies.add(dependency);
             }
             return dependencies;
         }
