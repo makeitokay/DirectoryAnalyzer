@@ -1,4 +1,4 @@
-package DirectoryAnalyzer;
+package makeitokay;
 
 public enum VisitState {
     Unvisited,

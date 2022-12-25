@@ -1,6 +1,6 @@
-package DirectoryAnalyzer;
+package makeitokay;
 
-import DirectoryAnalyzer.exception.DependentFileNotFoundException;
+import makeitokay.exception.DependentFileNotFoundException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

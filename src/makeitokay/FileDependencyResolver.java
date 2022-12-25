@@ -1,4 +1,4 @@
-package DirectoryAnalyzer;
+package makeitokay;
 
 import java.nio.file.Path;
 import java.util.ArrayList;

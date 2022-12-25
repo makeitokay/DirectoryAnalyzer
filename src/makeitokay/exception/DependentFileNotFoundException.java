@@ -1,4 +1,4 @@
-package DirectoryAnalyzer.exception;
+package makeitokay.exception;
 
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
