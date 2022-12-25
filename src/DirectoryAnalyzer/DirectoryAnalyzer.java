@@ -18,7 +18,7 @@ public class DirectoryAnalyzer {
         if (!Files.isDirectory(this.directory, LinkOption.NOFOLLOW_LINKS)) {
             throw new FileNotFoundException("Directory not found");
         }
-        this.fileParser = new FileParser(directory);
+        this.fileParser = new FileParser();
         this.dependencyResolver = new FileDependencyResolver();
     }
 

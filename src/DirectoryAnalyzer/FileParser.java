@@ -3,7 +3,6 @@ package DirectoryAnalyzer;
 import DirectoryAnalyzer.exception.DependentFileNotFoundException;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,10 +14,7 @@ import java.util.regex.Pattern;
 public class FileParser {
     private static final Pattern dependencyRequirePattern = Pattern.compile("require ['\"<`‘](?<dependencyPath>.*)['\">`’]");
 
-    private final Path directory;
-
-    public FileParser(Path directory) {
-        this.directory = directory;
+    public FileParser() {
     }
 
     public List<Path> getFileDependencies(Path file) throws IOException {
