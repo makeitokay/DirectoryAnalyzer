@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Stack;
 
 public class FileDependencyResolver {
     private final HashMap<String, List<String>> adjacencyMap;
@@ -24,13 +25,40 @@ public class FileDependencyResolver {
         for (var file : files) {
             visited.put(file, VisitState.Unvisited);
         }
-        for (var file : adjacencyMap.keySet()) {
+        for (var file : files) {
             List<String> dependencyLog = new ArrayList<>();
             if (visited.get(file) == VisitState.Unvisited && hasCyclicDependency(file, visited, dependencyLog)) {
                 return dependencyLog;
             }
         }
         return null;
+    }
+
+    public List<String> topologicalSort() {
+        var result = new Stack<String>();
+        var visited = new HashMap<String, VisitState>();
+        var files = adjacencyMap.keySet();
+        for (var file : files) {
+            visited.put(file, VisitState.Unvisited);
+        }
+
+        for (var file : files) {
+            if (visited.get(file) == VisitState.Unvisited) {
+                topologicalSort(file, visited, result);
+            }
+        }
+        return result;
+    }
+
+    private void topologicalSort(String file, HashMap<String, VisitState> visited, Stack<String> result) {
+        visited.put(file, VisitState.Visited);
+
+        for (var child : adjacencyMap.get(file)) {
+            if (visited.get(child) == VisitState.Unvisited) {
+                topologicalSort(child, visited, result);
+            }
+        }
+        result.push(file);
     }
 
     private boolean hasCyclicDependency(String file, HashMap<String, VisitState> visited, List<String> dependencyLog) {

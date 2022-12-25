@@ -29,12 +29,11 @@ public class DirectoryAnalyzer {
             }
         }
 
-        var cyclicDependencyFile = dependencyResolver.getCyclicDependencyLog();
-        if (cyclicDependencyFile != null) {
-            cyclicDependencyFile.forEach(System.out::println);
+        var cyclicDependencyLog = dependencyResolver.getCyclicDependencyLog();
+        if (cyclicDependencyLog != null) {
+            cyclicDependencyLog.forEach(System.out::println);
+            return;
         }
-        else {
-            System.out.println("Все ок.");
-        }
+        dependencyResolver.topologicalSort().forEach(System.out::println);
     }
 }
