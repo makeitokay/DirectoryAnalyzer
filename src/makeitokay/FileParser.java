@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class FileParser {
-    private static final Pattern dependencyRequirePattern = Pattern.compile("require ['\"<`‘](?<dependencyPath>.*)['\">`’]");
+    private static final Pattern dependencyRequirePattern = Pattern.compile("^require ['\"<`‘](?<dependencyPath>.*)['\">`’]");
 
     public FileParser() {
     }
