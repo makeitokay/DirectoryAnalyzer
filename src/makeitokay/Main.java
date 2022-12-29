@@ -14,7 +14,7 @@ public class Main {
         System.out.println("Чтобы выйти из программы, введите 0");
         while (true) {
             System.out.println("Введите путь до директории (отн. или абс.):");
-            var directory = scanner.next();
+            var directory = scanner.nextLine();
             if (Objects.equals(directory, "0")) {
                 return;
             }
