@@ -5,7 +5,6 @@ import makeitokay.exception.DependentFileNotFoundException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UncheckedIOException;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
