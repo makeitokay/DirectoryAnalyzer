@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * Обертка над графом зависимостей файлов.
+ */
 public class FileDependencyResolver {
     private final HashMap<String, List<String>> adjacencyMap;
 
@@ -13,11 +16,20 @@ public class FileDependencyResolver {
         adjacencyMap = new HashMap<>();
     }
 
+    /**
+     * Добавляет файл и его зависимости в граф.
+     * @param file добавляемый файл.
+     * @param dependencies зависимости добавляемого файла.
+     */
     public void addFile(Path file, List<Path> dependencies) {
         adjacencyMap.put(file.normalize().toAbsolutePath().toString(),
                 dependencies.stream().map(path -> path.normalize().toAbsolutePath().toString()).toList());
     }
 
+    /**
+     * Анализирует граф на наличие цикла формирует лог посещений для информирования о наличии циклической зависимости в конкретном файле.
+     * @return Лог посещений, если циклическая зависимость найдена, иначе null.
+     */
     public List<String> getCyclicDependencyLog() {
         var visited = new HashMap<String, VisitState>();
 
@@ -34,6 +46,10 @@ public class FileDependencyResolver {
         return null;
     }
 
+    /**
+     * Применяет к графу топологическую сортировку.
+     * @return Список всех отсортированных файлов.
+     */
     public List<Path> topologicalSort() {
         var result = new Stack<String>();
         var visited = new HashMap<String, VisitState>();

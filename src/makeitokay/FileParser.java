@@ -11,12 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+/**
+ * Класс-утилита для чтения файлов.
+ */
 public class FileParser {
     private static final Pattern dependencyRequirePattern = Pattern.compile("^require ['\"<`‘](?<dependencyPath>.*)['\">`’]");
 
-    public FileParser() {
-    }
-
+    /**
+     * Ищет зависимости файла.
+     * @param file файл, в котором необходимо осуществить поиск.
+     * @return список зависимостей файла.
+     * @throws IOException если невозможно корректно прочитать файл или зависимости не существуют.
+     */
     public List<Path> getFileDependencies(Path file) throws IOException {
         try (var reader = new BufferedReader(new FileReader(file.toFile()))) {
             var dependencies = new ArrayList<Path>();
@@ -40,6 +46,11 @@ public class FileParser {
         }
     }
 
+    /**
+     * Печатает содержимое файла в консоль.
+     * @param file файл, содержимое которого необходимо вывести.
+     * @throws IOException если невозможно прочитать файл.
+     */
     public void printFile(Path file) throws IOException {
         try (var reader = new BufferedReader(new FileReader(file.toFile()))) {
             String line;
