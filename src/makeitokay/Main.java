@@ -15,7 +15,7 @@ public class Main {
         while (true) {
             System.out.println("Введите путь до директории (отн. или абс.):");
             var directory = scanner.nextLine();
-            if (Objects.equals(directory, "0")) {
+            if (directory.equals("0")) {
                 return;
             }
             try {
